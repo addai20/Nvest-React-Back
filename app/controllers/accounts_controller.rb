@@ -4,9 +4,15 @@ class AccountsController < ApplicationController
     @account = Account.new(strong_params)
     render json: @account
   end
+
+  def create
+    @account = Account.create(strong_params)
+    render json: @account
+  end
+
   def index
     @accounts = Account.all
-    render json: Account.all
+    render json: @accounts
   end
 
   def show
@@ -24,7 +30,6 @@ private
       :assets,
       :orders,
       :beneficiaries
-
     )
   end
 

@@ -6,7 +6,7 @@ class SecuritiesController < ApplicationController
 
   def index
     @securities = Security.all
-    render json: Security.all
+    render json: @securities
   end
 
   def show
@@ -17,7 +17,7 @@ class SecuritiesController < ApplicationController
 
   def strong_params
     params.permit(:security).require(
-      # :account_id,
+      :account_id,
       :sec_id,
       :symbol,
       :asset_type,

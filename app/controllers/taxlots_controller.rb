@@ -2,8 +2,8 @@ class TaxlotsController < ApplicationController
 
   def index
     @taxlots = Taxlot.all
+    # byebug
     render json: @taxlots
-
   end
 
   def show
@@ -15,7 +15,6 @@ class TaxlotsController < ApplicationController
     @taxlot = Taxlot.create(strong_params)
     render json: @taxlot
   end
-
 
   private
 

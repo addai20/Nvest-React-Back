@@ -6,8 +6,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
-
+Investor.destroy_all
+Taxlot.destroy_all
+Security.destroy_all
+Account.destroy_all
 
 # class CreateInvestors < ActiveRecord::Migration[5.2]
 #   def change
@@ -35,27 +37,10 @@
 
 benjamin = Investor.create(firstName: 'Benjamin' , lastName: 'Addai', email: 'ben@nvest.com' , un: 'BigMoneyMoves', pw: 'localhost3000', dob:'03-12-1992', available_cash: 100000000, risk_tolerance: 'aggressive', sectors: ["tech", "finance", "medical"]  )
 
-brokerage = Account.create( investor_id: 1, name: 'NVest Brokerage', account_type: 'brokerage')
-ira = Account.create( investor_id: 1, name: 'NVest IRA', account_type: 'IRA')
-ira = Account.create( investor_id: 1, name: 'NVest ESA', account_type: 'ESA')
+brokerage = Account.create( investor_id: benjamin.id, name: 'NVest Brokerage', account_type: 'brokerage')
+ira = Account.create( investor_id: benjamin.id, name: 'NVest IRA', account_type: 'IRA')
+ira2 = Account.create( investor_id: benjamin.id, name: 'NVest ESA', account_type: 'ESA')
 
-securitiesArr = [
-  ["aapl", "stock", "technology"],
-  ["amzn", "stock", "technology"],
-  ["boa", "stock", "finance"],
-  ["SNAP", "stock", "technology"],
-  ["BRK.B", "stock", "technology"],
-  ["baba", "stock", "technology"],
-  ["fb", "stock", "technology"],
-  ["adbe", "stock", "technology"],
-  ["JPM", "stock", "finance"],
-  ["F", "stock", "technology"],
-  ["T", "stock", "telecom"]
-]
-
-
-
-securitiesArr.each {|security| Security.create(symbol: security[0], asset_type: security[1], sector: security[2])}
 
 # aaplTaxLot = Taxlot.create
 
@@ -74,18 +59,41 @@ securitiesArr.each {|security| Security.create(symbol: security[0], asset_type: 
 #     :price
 #   )
 
-taxlotsArr = [
-  [account_id: 1, security_id: 1, quantity: 20, price: 18000],
-  [account_id: 1, security_id: 2, quantity: 15, price: 120000],
-  [account_id: 1, security_id: 3, quantity: 100, price: 5500],
-  [account_id: 1, security_id: 4, quantity: 25, price: 2700],
-  [account_id: 1, security_id: 5, quantity: 20, price: 18000],
-  [account_id: 1, security_id: 6, quantity: 20, price: 18000],
 
-]
-
-taxlotsArr.each {|taxlot| Taxlot.create(account_id: taxlot[0], security_id: taxlot[1], quantity: taxlot[2], price: taxlot[3])}
 
 # const sampleStocks = ["aapl", "amzn", "boa", "SNAP", "BRK.B", "baba", "fb", "adbe", "JPM", "F", "T"]
 #
 # puts (benjamin)
+
+      #CREATES SECURITIES
+
+securitiesArr = [
+  {symbol: "aapl", asset_type: "stock", sector: "technology"},
+  {symbol: "amzn", asset_type: "stock", sector: "technology"},
+  {symbol: "boa", asset_type: "stock", sector: "finance"},
+  {symbol: "SNAP", asset_type: "stock", sector: "technology"},
+  {symbol: "BRK.B", asset_type: "stock", sector: "technology"},
+  {symbol: "baba", asset_type: "stock", sector: "technology"},
+  {symbol: "fb", asset_type: "stock", sector: "technology"},
+  {symbol: "adbe", asset_type: "stock", sector: "technology"},
+  {symbol: "JPM", asset_type: "stock", sector: "finance"},
+  {symbol: "F", asset_type: "stock", sector: "technology"},
+  {symbol: "T", asset_type: "stock", sector: "telecom"}
+]
+
+
+
+securitiesArr.each {|security| Security.create(security)}
+
+
+taxlotsArr = [
+  {account_id: ira.id, security_id: Security.all.sample.id, quantity: 20, price: 18000},
+  {account_id: ira.id, security_id: Security.all.sample.id, quantity: 15, price: 120000},
+  {account_id: ira.id, security_id: Security.all.sample.id, quantity: 100, price: 5500},
+  {account_id: ira.id, security_id: Security.all.sample.id, quantity: 25, price: 2700},
+  {account_id: ira.id, security_id: Security.all.sample.id, quantity: 20, price: 18000},
+  {account_id: ira.id, security_id: Security.all.sample.id, quantity: 20, price: 18000},
+
+]
+
+taxlotsArr.each {|taxlot| Taxlot.create(taxlot)}
