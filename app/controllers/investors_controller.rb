@@ -1,5 +1,10 @@
 class InvestorsController < ApplicationController
 
+  def index
+    @investors = Investor.all
+    render json: @investors
+  end
+
   def new
     # render json: Investor.new(strong_params)
     @investor = Investor.new(strong_params)
@@ -13,7 +18,17 @@ class InvestorsController < ApplicationController
   end
 
   def show
-    render json: Investor.find(params[:id])
+    @investor = Investor.find(params[:id])
+    @accounts = @investor.accounts.map { |acc| [acc, acc.securities]}
+
+    #initialize an empty array for all stocks
+    # @stocks = []
+
+
+
+    render json: [@investor, @accounts,  ]
+
+
   end
 
   private

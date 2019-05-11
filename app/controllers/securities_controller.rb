@@ -4,13 +4,19 @@ class SecuritiesController < ApplicationController
     @security = Security.new(strong_params)
   end
 
+  def create
+    @security = Security.create(strong_params)
+    render json: @security
+  end
+
   def index
     @securities = Security.all
     render json: @securities
   end
 
   def show
-    render json: Security.find(params[:id])
+    @security = Security.find(params[:id])
+    render json: [@security, @security.taxlots]
   end
 
   private

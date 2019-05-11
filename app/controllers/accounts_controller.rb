@@ -16,7 +16,8 @@ class AccountsController < ApplicationController
   end
 
   def show
-    render json: Account.find(params[:id])
+    @account = Account.find(params[:id])
+    render json: [@account, @account.securities]
   end
 
 private
