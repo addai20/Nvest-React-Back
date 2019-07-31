@@ -35,7 +35,7 @@ Account.destroy_all
 # # https://dockyard.com/blog/ruby/2012/09/18/rails-4-sneak-peek-postgresql-array-support
 
 
-benjamin = Investor.create(firstName: 'Benjamin' , lastName: 'Addai', email: 'ben@nvest.com' , un: 'BigMoneyMoves', pw: 'localhost3000', dob:'03-12-1992', available_cash: 100000000, risk_tolerance: 'aggressive', sectors: ["tech", "finance", "medical"]  )
+benjamin = Investor.create(firstName: 'Benjamin' , lastName: 'Addai', email: 'ben@nvest.com' , un: 'BigMoneyMoves', pw: 'localhost3000', dob:'03-12-1992', available_cash: 100000, risk_tolerance: 'aggressive', sectors: ["tech", "finance", "medical"]  )
 
 brokerage = Account.create( investor_id: benjamin.id, name: 'NVest Brokerage', account_type: 'brokerage')
 ira = Account.create( investor_id: benjamin.id, name: 'NVest IRA', account_type: 'IRA')

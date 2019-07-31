@@ -24,7 +24,9 @@ gem 'puma', '~> 3.11'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'iex-ruby-client', '~> 0.2.0'
+gem 'dotenv'
+
+gem 'iex-ruby-client', '~> 1.1'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

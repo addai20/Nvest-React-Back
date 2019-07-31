@@ -19,14 +19,14 @@ class InvestorsController < ApplicationController
 
   def show
     @investor = Investor.find(params[:id])
-    @accounts = @investor.accounts.map { |acc| [acc, acc.securities]}
+    @accounts = @investor.accounts.map { |acc| [acc, acc.securities, acc.taxlots]}
 
     #initialize an empty array for all stocks
     # @stocks = []
 
 
 
-    render json: [@investor, @accounts,  ]
+    render json: [@investor, @accounts]
 
 
   end
